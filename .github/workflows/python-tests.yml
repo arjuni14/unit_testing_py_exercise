@@ -1,10 +1,10 @@
 name: Run tests
 
 on:
-    push:
-      branches:
-        - main
-        - feature/arjun-iyer/ci
+  push:
+    branches:
+      - main
+      - feature/arjun-iyer/ci
 
 jobs:
   test:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Set up python
-      - uses: actions/setup-python@4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
@@ -27,5 +27,6 @@ jobs:
 
       - name: Run tests with branch coverage
         run: |
+          python -m pip install coverage 
           coverage run --branch -m pytest
           coverage report -m
